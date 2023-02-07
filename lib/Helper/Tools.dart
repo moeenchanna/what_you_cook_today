@@ -1,23 +1,20 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_snackbars/enums/animate_from.dart';
 import 'package:smart_snackbars/smart_snackbars.dart';
 
 class Tools {
-
   static void statusBarTransparent() {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light
-    ));
+        statusBarIconBrightness: Brightness.light));
   }
 
-  static void snackBarAlert(BuildContext context,String title,String msg,Color color) {
-
+  static void showSnackBar(
+      BuildContext context, String title, String description) {
     SmartSnackBars.showTemplatedSnackbar(
       context: context,
-      backgroundColor: color,
+      backgroundColor: (title == "Success") ? Colors.green : Colors.red,
       animateFrom: AnimateFrom.fromTop,
       leading: Container(
         margin: const EdgeInsets.only(right: 10),
@@ -26,12 +23,17 @@ class Tools {
           shape: BoxShape.circle,
           color: Colors.white.withOpacity(0.2),
         ),
-        child: const Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
+        child: (title == "Success")
+            ? const Icon(
+                Icons.check,
+                color: Colors.white,
+              )
+            : const Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
       ),
-      titleWidget:  Text(
+      titleWidget: Text(
         title,
         style: const TextStyle(
           color: Colors.white,
@@ -42,7 +44,7 @@ class Tools {
       subTitleWidget: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Text(
-          msg,
+          description,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -59,24 +61,35 @@ class Tools {
         ),
       ),
     );
+  }
 
-    // final snackBar = SnackBar(
-    //   /// need to set following properties for best effect of awesome_snackbar_content
-    //   elevation: 0,
-    //   behavior: SnackBarBehavior.fixed,
-    //
-    //   dismissDirection: DismissDirection.none,
-    //   backgroundColor: Colors.transparent,
-    //   content: AwesomeSnackbarContent(
-    //     title: title,
-    //     message:
-    //     msg,
-    //     /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
-    //     contentType: type,
-    //   ),
-    // );
-    // ScaffoldMessenger.of(context)
-    //   ..hideCurrentSnackBar()
-    //   ..showSnackBar(snackBar);
+  static void showAlertDialog(
+      BuildContext context, String title, String description) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: const Text("Ok"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+
+      title: Text(title),
+      content: Text(description),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

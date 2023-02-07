@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:what_you_cook_today/screens/Screens.dart';
 
@@ -63,8 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomButton(
                   buttonName: "Login",
                   onPress: () {
-                    Navigator.pushNamed(context, HomeScreen.routeKey);
-                    Tools.snackBarAlert(context, "title", "msg", Colors.red);
+                    //Navigator.pushNamed(context, HomeScreen.routeKey);
+                    Tools.showSnackBar(context, "Fail", "Description");
+                    Tools.showAlertDialog(context,  "Login Fail", "Try again");
                   }),
               const SizedBox(
                 height: 2,
