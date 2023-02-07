@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:what_you_cook_today/Helper/Helper.dart';
 import 'package:what_you_cook_today/screens/Screens.dart';
 import 'package:what_you_cook_today/utils/Utils.dart';
+
+import '../widgets/Widgets.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
-static String routeKey = "/signUp";
+
+  static String routeKey = "/signUp";
+
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
@@ -14,11 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light
-      //color set to transperent or set your own color
-    ));
+    Tools.statusBarTransparent();
   }
 
   @override
@@ -30,118 +30,71 @@ class _SignUpScreenState extends State<SignUpScreen> {
         top: false,
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(ImagesResources.loginImage),
+              const LoginImageWidget(),
               const SizedBox(
                 height: 25,
               ),
-              Text(
-                "Signup Form",
-                style: GoogleFonts.bebasNeue(fontSize: 40),
+              const CustomTextHeading(
+                title: "Signup Form",
               ),
               const SizedBox(
                 height: 25,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
-                    child: TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          border: InputBorder.none, hintText: "Email"),
-                    ),
-                  ),
-                ),
-              ),
+              CustomTextField(
+                  hint: "Name",
+                  keyboardType: "text",
+                  onChanged: (v) {
+                    print(v);
+                  }),
               const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
-                    child: TextField(
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          border: InputBorder.none, hintText: "Password"),
-                    ),
-                  ),
-                ),
+              CustomTextField(
+                  hint: "Phone",
+                  keyboardType: "number",
+                  onChanged: (v) {
+                    print(v);
+                  }),
+              const SizedBox(
+                height: 10,
               ),
+              CustomTextField(
+                  hint: "Email",
+                  keyboardType: "email",
+                  onChanged: (v) {
+                    print(v);
+                  }),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomTextField(
+                  hint: "Password",
+                  keyboardType: "text",
+                  password: true,
+                  onChanged: (v) {
+                    print(v);
+                  }),
               const SizedBox(
                 height: 20,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, HomeScreen.routeKey);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                        color: Colors.deepOrange.shade500,
-                        borderRadius: BorderRadius.circular(12)),
-                    child: const Center(
-                      child: Text(
-                        "Sign up",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: Dimensions.fontSizeMedium,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
+              CustomButton(
+                  buttonName: "Sign Up",
+                  onPress: () {
+                    Navigator.pushNamed(context, HomeScreen.routeKey);
+                  })
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent, elevation: 0, // to get rid of the shadow
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Back To",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: Dimensions.fontSizeMedium),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    },
-                  child: const Text(
-                    " Login",
-                    style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.fontSizeMedium),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: CustomBottomAppBarWidget(
+          title1: "Back to",
+          title2: " Login",
+          onPress: () {
+            Navigator.of(context).pop();
+          }),
     );
   }
 }
+
