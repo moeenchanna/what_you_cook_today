@@ -38,7 +38,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
   mask_text_input_formatter: ^2.4.0
-  awesome_snackbar_content: ^0.1.0
   smart_snackbars: ^1.0.0
 
 
