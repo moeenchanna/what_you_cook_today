@@ -75,7 +75,6 @@ class Tools {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-
       title: Text(title),
       content: Text(description),
       actions: [
@@ -91,5 +90,53 @@ class Tools {
         return alert;
       },
     );
+  }
+
+  static validatePassword(String? txt) {
+    if (txt == null || txt.isEmpty) {
+      return "Invalid password!";
+    }
+    if (txt.length < 8) {
+      return "Password must has 8 characters";
+    }
+    // if (!txt.contains(RegExp(r'[A-Z]'))) {
+    //   return "Password must has uppercase";
+    // }
+    // if (!txt.contains(RegExp(r'[0-9]'))) {
+    //   return "Password must has digits";
+    // }
+    // if (!txt.contains(RegExp(r'[a-z]'))) {
+    //   return "Password must has lowercase";
+    // }
+    // if (!txt.contains(RegExp(r'[#?!@$%^&*-]'))) {
+    //   return "Password must has special characters";
+    // }
+    else {
+      return;
+    }
+  }
+
+  static validateEmail(String? txt) {
+    if (txt == null || txt.isEmpty) {
+      return "Email can\'t Be Empty";
+    }
+    if (!txt.contains('@') || !txt.contains('.')) {
+      return "Invalid email!";
+    }
+    // if (!txt.contains(RegExp(r'[A-Z]'))) {
+    //   return "Password must has uppercase";
+    // }
+    // if (!txt.contains(RegExp(r'[0-9]'))) {
+    //   return "Password must has digits";
+    // }
+    // if (!txt.contains(RegExp(r'[a-z]'))) {
+    //   return "Password must has lowercase";
+    // }
+    // if (!txt.contains(RegExp(r'[#?!@$%^&*-]'))) {
+    //   return "Password must has special characters";
+    // }
+    else {
+      return "true";
+    }
   }
 }

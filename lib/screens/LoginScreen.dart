@@ -14,10 +14,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _emailTextEditingController = TextEditingController();
+  final _passwordTextEditingController = TextEditingController();
+  bool _validate = false;
+
   @override
   void initState() {
     super.initState();
     Tools.statusBarTransparent();
+  }
+
+  @override
+  void dispose() {
+    _emailTextEditingController.dispose();
+    _passwordTextEditingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -41,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 10,
               ),
               CustomTextField(
+                  controller: _emailTextEditingController,
                   hint: "Email",
                   keyboardType: "email",
                   onChanged: (v) {
@@ -50,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 10,
               ),
               CustomTextField(
+                  controller: _passwordTextEditingController,
                   hint: "Password",
                   keyboardType: "text",
                   password: true,
@@ -62,9 +75,22 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomButton(
                   buttonName: "Login",
                   onPress: () {
-                    //Navigator.pushNamed(context, HomeScreen.routeKey);
-                    Tools.showSnackBar(context, "Fail", "Description");
-                    Tools.showAlertDialog(context,  "Login Fail", "Try again");
+
+                    Tools.showSnackBar(context, "Success", "Login Successfull");
+                    Navigator.pushNamed(context, HomeScreen.routeKey);
+                    // Tools.showSnackBar(
+                    //     context,
+                    //     "Email Required",
+                    //     Tools.validateEmail(
+                    //         _emailTextEditingController.text));
+
+
+
+                    // Tools.showSnackBar(
+                    //     context,
+                    //     "Password Required",
+                    //     Tools.validatePassword(
+                    //         _passwordTextEditingController.text));
                   }),
               const SizedBox(
                 height: 2,
@@ -86,6 +112,4 @@ class _LoginScreenState extends State<LoginScreen> {
           }),
     );
   }
-
-
 }
