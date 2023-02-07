@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:what_you_cook_today/Helper/Helper.dart';
 import 'package:what_you_cook_today/screens/Screens.dart';
-import 'package:what_you_cook_today/utils/Utils.dart';
 
 import '../widgets/Widgets.dart';
 
@@ -38,6 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const CustomTextHeading(
                 title: "Signup Form",
+                  textSize: 40
               ),
               const SizedBox(
                 height: 25,

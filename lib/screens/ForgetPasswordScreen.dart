@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:what_you_cook_today/screens/Screens.dart';
-import 'package:what_you_cook_today/utils/Utils.dart';
 
 import '../widgets/Widgets.dart';
 
@@ -42,6 +39,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               ),
               const CustomTextHeading(
                 title: "Forget Password",
+                  textSize: 40
               ),
               const SizedBox(
                 height: 25,

@@ -118,7 +118,7 @@ class Tools {
 
   static validateEmail(String? txt) {
     if (txt == null || txt.isEmpty) {
-      return "Email can\'t Be Empty";
+      return "Email can't Be Empty";
     }
     if (!txt.contains('@') || !txt.contains('.')) {
       return "Invalid email!";

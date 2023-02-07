@@ -16,7 +16,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailTextEditingController = TextEditingController();
   final _passwordTextEditingController = TextEditingController();
-  bool _validate = false;
 
   @override
   void initState() {
@@ -47,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const CustomTextHeading(
                 title: "Login Now",
+                  textSize: 40
               ),
               const SizedBox(
                 height: 10,
